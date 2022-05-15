@@ -1,0 +1,116 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+/* button {
+  margin: 3px;
+} */
+
+.list-item-active {
+  /* color: orange; */
+  border: 1px solid;
+}
+mat-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+mat-sidenav {
+  margin: 16px;
+  width: 300px;
+  border-right: none;
+  background: #00aeffc9;
+  color: white;
+  border-radius: 10px;
+
+  padding: 16px;
+  text-align: center;
+}
+
+.content {
+  border-radius: 10px;
+  margin: 16px;
+  margin-left: 32px;
+  justify-content: center;
+  align-items: center;
+}
+
+mat-sidenav-container {
+  height: calc(100vh - 65px);
+}
+
+.menu-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 1rem;
+}
+
+.menu-button mat-icon {
+  margin-right: 10px;
+}
+
+.list-item-active {
+  /* color: orange; */
+  background-color: #3855ad;
+  border-left: 5px solid;
+}
+
+mat-divider {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+  background: #f2f2f2;
+}
+
+ul li {
+  display: inline-block;
+  position: relative;
+  line-height: 21px;
+  text-align: right;
+}
+ul li a {
+  display: block;
+  padding: 8px 25px;
+  color: #333;
+  text-decoration: none;
+}
+ul li a:hover {
+  color: #fff;
+  background: #939393;
+}
+ul li ul.dropdown {
+  min-width: 125px; /* Set width of the dropdown */
+  background: #f2f2f2;
+  display: none;
+  position: absolute;
+  z-index: 999;
+  left: 0;
+}
+ul li:hover ul.dropdown {
+  display: block; /* Display the dropdown */
+}
+ul li ul.dropdown li {
+  display: block;
+}
+
+.dropdown {
+  width: 85%;
+  margin-left: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 1rem;
+}
+
+.dropdown mat-icon {
+  margin-right: 10px;
+}

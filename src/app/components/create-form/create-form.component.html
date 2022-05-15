@@ -1,0 +1,179 @@
+<form
+  #addressForm="ngForm"
+  class="container"
+  style="margin-top: 50px"
+  (ngSubmit)="addressForm.valid && logValue()"
+>
+  <div class="row justify-content-center">
+    <div>
+      <section class="container border mb-4 p-3">
+        <div class="row">
+          <div class="col-6">
+            <h4>Enter Form Name</h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Form Name</mat-label>
+              <input
+                matInput
+                name="Title"
+                [(ngModel)]="field[0].Title"
+                placeholder="Title of the form"
+                required
+              />
+            </mat-form-field>
+          </div>
+          <div class="col-6">
+            <mat-form-field appearance="fill">
+              <mat-label>Related sub-category</mat-label>
+              <mat-select name="relatedTo" [(ngModel)]="field[0].relatedTo">
+                <mat-option *ngFor="let val of subCategory" [value]="val" >
+                  {{val.sub_category_name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </section>
+      <section
+        class="container border mb-4 p-3"
+        *ngFor="let val of field; let i = index"
+      >
+        <div class="row">
+          <div class="col-6">
+            <h4>Field {{ i + 1 }}</h4>
+          </div>
+          <div
+            class="col-6 text-right"
+            style="text-align: right"
+            *ngIf="i >= 1"
+          >
+            <button
+              type="button"
+              mat-icon-button
+              matTooltip="Remove the Field"
+              color="warn"
+              (click)="removeField(i)"
+              style="font-weight: 500; margin-bottom: 10px"
+            >
+              <mat-icon>remove_circle_outline</mat-icon>
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Name of the field</mat-label>
+              <input
+                matInput
+                [(ngModel)]="val.name"
+                name="name_{{ val.id }}"
+                placeholder="Name of the field"
+                required
+              />
+            </mat-form-field>
+          </div>
+          <div class="col-6">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Type of the field</mat-label>
+              <mat-select
+                [(ngModel)]="val.type"
+                (selectionChange)="mySelectHandler(val.type, val.id)"
+                name="type_{{ val.id }}"
+                required
+              >
+                <mat-option value="text">Text</mat-option>
+                <mat-option value="radio">Radio Button</mat-option>
+                <mat-option value="checkbox">Check box</mat-option>
+                <mat-option value="date">Date</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div *ngIf="val.type == 'text'">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Characters</mat-label>
+            <mat-select
+              [(ngModel)]="val.chartype"
+              name="chartype_{{ val.id }}"
+              required
+            >
+              <mat-option value="alphabets">Alphabets</mat-option>
+              <mat-option value="numerals">Numerals</mat-option>
+              <mat-option value="Alphanumeric">Alphanumeric</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="row" *ngIf="val.type == 'radio' || val.type == 'checkbox'">
+          <div
+            *ngFor="let opt of val.options; let i = index"
+            [ngClass]="{ 'col-6': i < 2, 'col-10': i >= 2 }"
+          >
+            <div>
+              <div class="wrap">
+                <mat-form-field class="example-full-width">
+                  <input
+                    matInput
+                    [(ngModel)]="opt.Name"
+                    name="opt_{{ val.id }}_{{ i }}"
+                    placeholder="Option {{ i + 1 }}"
+                    required
+                  />
+                </mat-form-field>
+                <button
+                  style="
+                    padding-bottom: 0px;
+                    padding-top: 0px;
+                    height: 45px;
+                    width: 37px;
+                    margin-left: 40px;
+                  "
+                  type="button"
+                  class="btn btn-danger"
+                  *ngIf="i > 1"
+                  (click)="onDelOption(val.id, i + 1)"
+                >
+                  -
+                </button>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="form-group">
+              <button
+                style="float: right; margin-top: 5px"
+                type="button"
+                class="btn btn-danger"
+                (click)="onAddOpt(val.id)"
+              >
+                +
+              </button>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top: 10px">
+          <mat-checkbox
+            name="required_{{ val.id }}"
+            [(ngModel)]="val.required"
+            value="required"
+            >Mandatory Field</mat-checkbox
+          >
+        </div>
+      </section>
+      <div class="alignbutton">
+        <button
+          type="button"
+          mat-raised-button
+          color="primary"
+          (click)="addField()"
+        >
+          Add Field
+        </button>
+        <button type="submit" mat-raised-button color="accent">Next</button>
+      </div>
+    </div>
+  </div>
+</form>

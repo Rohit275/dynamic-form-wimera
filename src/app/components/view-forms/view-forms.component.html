@@ -1,0 +1,80 @@
+<!-- <h1>This is dynamic form</h1> -->
+<button mat-icon-button class="close-button" [mat-dialog-close]="true">
+  <mat-icon class="close-icon" color="warn">close</mat-icon>
+</button>
+<div class="container border gen-container" *ngIf="Field">
+  <form #f="ngForm" (ngSubmit)="f.submitted && onSubmit(f)">
+    <div class="example-list" fxLayout="row wrap">
+      <div
+        class="mb-3 example-box"
+        *ngFor="let field of Field"
+        fxFlex="0 0 33.3"
+      >
+        <div *ngIf="field.type == 'text'">
+          <mat-form-field class="full-width">
+            <mat-label>{{ field.name }}</mat-label>
+            <input
+              matInput
+              name="{{ field.name }}"
+              [ngModel]
+              class="full-width"
+              #name="ngModel"
+              value="{{ field.label }}"
+            />
+          </mat-form-field>
+        </div>
+
+        <div *ngIf="field.type == 'radio'">
+          <h5>
+            {{ field.name }}
+            <small *ngIf="field.required" style="color: red">*</small>
+          </h5>
+          <mat-radio-group required name="{{ field.name }}" [ngModel]>
+            <mat-radio-button
+              *ngFor="let opt of field.options; let isLast = last"
+              value="{{ opt.Name }}"
+            >
+              {{ opt.Name }}
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <div *ngIf="field.type == 'date'">
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              class="full-width"
+              [ngModel]
+              [matDatepicker]="picker"
+              placeholder="Choose a date"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              class="full-width"
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div *ngIf="field.type == 'checkbox'">
+          <h5>
+            {{ field.name }}
+            <small *ngIf="field.required" style="color: red">*</small>
+          </h5>
+          <div *ngFor="let opt of field.options; let isLast = last">
+            <mat-checkbox
+              name="{{ opt.Name }}"
+              [(ngModel)]="opt.selected"
+              value="{{ opt.Name }}"
+              >{{ opt.Name }}</mat-checkbox
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary mb-3">Submit</button>
+  </form>
+</div>
+
+<!-- {{ field.name }} -->

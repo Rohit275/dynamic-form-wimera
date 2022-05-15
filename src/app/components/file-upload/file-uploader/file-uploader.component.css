@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.responsive {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  text-align: center;
+  margin-bottom: 30px;
+  border: 1px;
+}
+
+h2 {
+	font-weight: bold;
+	margin: 0;
+  /* color: #FFFFFF; */
+  opacity: 80%;
+}
+
+p {
+  font-size: 12px;
+  opacity: 60%;
+}

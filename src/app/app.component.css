@@ -1,0 +1,11 @@
+.form-container {
+  display: flex;
+  flex-direction: row;
+  margin: 30px;
+}
+
+.left-form,
+.right-form {
+  align-items: center;
+  flex: 50%;
+}

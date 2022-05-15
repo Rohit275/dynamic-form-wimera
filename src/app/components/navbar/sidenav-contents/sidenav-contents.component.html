@@ -1,0 +1,52 @@
+<!-- <div *ngFor="let category of category">
+  <button mat-button class="menu-button" (click)="categorySelect(category)">
+    {{ category.category_name }}
+  </button>
+</div> -->
+
+
+<mat-accordion>
+  <mat-expansion-panel (opened)="panelOpenState = true"(closed)="panelOpenState = false" *ngFor="let category of category">
+    <mat-expansion-panel-header (click)="panelHeader(category)">
+
+      <mat-panel-title>
+        {{ category.category_name }}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+      <div *ngFor="let sub of subCategory">
+        <button  mat-button class="menu-button" (click)="subSelector(sub)">
+          {{sub.sub_category_name}}
+        </button>
+      </div>
+      <button  mat-button class="menu-button" (click)="addCategory(template_category,'sub_category')">
+        <mat-icon>add</mat-icon>
+          Add New Sub Category
+      </button>
+
+    <!-- <p>I'm visible because I am open {{category.category_name}}</p> -->
+
+  </mat-expansion-panel>
+</mat-accordion>
+
+<button mat-button class="menu-button" matTooltip="Add new category" (click)="addCategory(template_category, 'category')">
+  <mat-icon>add</mat-icon>
+  New Category
+</button>
+
+<ng-template #template_category>
+  <h1 mat-dialog-title>Enter the {{type}}</h1>
+  <div mat-dialog-content>
+    <form
+      class="example-form"
+      #CategoryForm="ngForm"
+      (ngSubmit)="CategoryForm.valid && categoryLog(CategoryForm)"
+    >
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>{{type}}</mat-label>
+        <input matInput ngModel requiredo name={{type}} />
+      </mat-form-field>
+      <button type="submit" mat-raised-button color="accent">Submit</button>
+    </form>
+  </div>
+</ng-template>

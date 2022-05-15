@@ -1,0 +1,53 @@
+<mat-toolbar class="mat-elevation-z8">
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+    (click)="sidenavToggle()"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <!-- <button
+    mat-icon-button
+    class="example-icon"
+    *ngIf="sidenav.mode === 'over'"
+    aria-label="Example icon-button with menu icon"
+    (click)="sidenavToggle()"
+  >
+    <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
+    <mat-icon *ngIf="sidenav.opened">close</mat-icon>
+  </button> -->
+  <span>Wimera</span>
+  <span class="example-spacer"></span>
+  <!-- <button
+    mat-button
+    matTooltip="Create new form"
+    (click)="createForm()"
+    routerLinkActive="list-item-active"
+  >
+    Create
+  </button>
+  <button
+    mat-button
+    matTooltip="View your form"
+    (click)="viewForm()"
+    routerLinkActive="list-item-active"
+  >
+    View
+  </button> -->
+  <button mat-icon-button matTooltip="Logout" color="warn" routerLink="/login">
+    <mat-icon>logout</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav class="mat-elevation-z8" mode="over" #sidenav="matSidenav">
+    <app-sidenav-contents></app-sidenav-contents>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
