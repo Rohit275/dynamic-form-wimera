@@ -1,0 +1,62 @@
+
+
+<div class="grid-cards">
+  <div
+    class="grid-cards-inner"
+    *ngFor="let val of forms; let i = index"
+    (click)="onclickForm(i)"
+  >
+    <div>
+      <h1>{{ val.formName }}</h1>
+    </div>
+  </div>
+  <!-- <button mat-raised-button (click)="onCreateNewForm()">
+    <mat-icon>add</mat-icon> New Form
+  </button> -->
+</div>
+
+<div class="img-container" *ngIf="isEmpty" >
+
+  <img src="{{path}}" alt="selector" class="responsive">
+  <h2>Form List Empty.</h2>
+  <p>Click on Form to create new form or upload a file.</p>
+</div>
+
+<div class="btn-container">
+  <button
+    mat-raised-button
+    matTooltip="Add New Form"
+    (click)="onCreateNewForm()"
+    class="btn-child"
+  >
+    <mat-icon>add</mat-icon>
+    New Form
+  </button>
+  <button
+    mat-raised-button
+    matTooltip="Upload a File"
+    class="btn-child"
+    (click)="onUploadFile()"
+  >
+    <mat-icon>upload</mat-icon>
+    Upload File
+  </button>
+</div>
+
+
+<!-- <div class="container">
+  <div class="row">
+    <div class="col-xs-2">
+      <button mat-raised-button (click)="onCreateNewForm()" class="btn-child">
+        <mat-icon>add</mat-icon>
+        New Form
+      </button>
+    </div>
+    <div class="col-xs-4">
+      <button mat-raised-button class="btn-child">
+        <mat-icon>file_upload</mat-icon>
+        Upload File
+      </button>
+    </div>
+  </div>
+</div> -->
