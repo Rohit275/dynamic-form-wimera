@@ -35,7 +35,7 @@ router.post("/getforms", (req, res, next) => {
   cat = new ObjectId(req.body.category._id)
   subcat = new ObjectId(req.body.subcategory._id)
 
-  console.log("cat",cat)
+  // console.log("cat",cat)
 
   Users.findOne({ _id: req.body.id })
     .populate("forms")
@@ -43,7 +43,7 @@ router.post("/getforms", (req, res, next) => {
       if (user) {
         forms.find({category: cat, subCategory: subcat}).then((value) => {
           if (value) {
-            console.log('Found', value)
+            // console.log('Found', value)
             return res
             .status(200)
             .json({ message: "Forms Fetched Successfully", user: value });
